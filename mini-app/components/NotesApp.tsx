@@ -217,7 +217,7 @@ export default function NotesApp() {
               <select
                 value={editingNote.theme || "light"}
                 onChange={(e) =>
-                  updateNote(editingNote.id, { theme: e.target.value })
+                  updateNote(editingNote.id, { theme: e.target.value as "light" | "dark" })
                 }
                 className="w-full p-2 rounded border border-input focus:outline-none focus:ring-2 focus:ring-primary mt-2"
               >
