@@ -13,12 +13,14 @@ interface Note {
   password?: string;
   createdAt: number;
   updatedAt: number;
+  theme: "light" | "dark";
 }
 
 const STORAGE_KEY = "notes-app-notes";
 
 export default function NotesApp() {
   const [notes, setNotes] = useState<Note[]>([]);
+  const [autosaveEnabled, setAutosaveEnabled] = useState<boolean>(true);
   const [search, setSearch] = useState("");
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [editingNote, setEditingNote] = useState<Note | null>(null);
@@ -33,8 +35,10 @@ export default function NotesApp() {
 
   // Persist notes to localStorage
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
-  }, [notes]);
+    if (autosaveEnabled) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    }
+  }, [notes, autosaveEnabled]);
 
   // Apply theme
   useEffect(() => {
@@ -49,11 +53,38 @@ export default function NotesApp() {
       pinned: false,
       tags: [],
       archived: false,
+      theme: "light",
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
     setNotes((prev) => [newNote, ...prev]);
     setEditingNote(newNote);
+  };
+
+  const applyFormatting = (id: string, type: string) => {
+    setNotes((prev) =>
+      prev.map((n) => {
+        if (n.id !== id) return n;
+        let newContent = n.content;
+        switch (type) {
+          case "bold":
+            newContent = `<b>${newContent}</b>`;
+            break;
+          case "italic":
+            newContent = `<i>${newContent}</i>`;
+            break;
+          case "underline":
+            newContent = `<u>${newContent}</u>`;
+            break;
+          case "bullet":
+            newContent = `<ul><li>${newContent}</li></ul>`;
+            break;
+          default:
+            break;
+        }
+        return { ...n, content: newContent, updatedAt: Date.now() };
+      })
+    );
   };
 
   const updateNote = (id: string, updates: Partial<Note>) => {
@@ -98,6 +129,13 @@ export default function NotesApp() {
           aria-label="Toggle theme"
         >
           {theme === "light" ? "🌙" : "☀️"}
+        </button>
+        <button
+          onClick={() => setAutosaveEnabled(!autosaveEnabled)}
+          className="p-2 rounded bg-muted hover:bg-muted/80"
+          aria-label="Toggle autosave"
+        >
+          {autosaveEnabled ? "🛑" : "▶️"}
         </button>
       </div>
 
@@ -176,6 +214,46 @@ export default function NotesApp() {
                 className="w-full p-2 rounded border border-input focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Title"
               />
+              <select
+                value={editingNote.theme || "light"}
+                onChange={(e) =>
+                  updateNote(editingNote.id, { theme: e.target.value })
+                }
+                className="w-full p-2 rounded border border-input focus:outline-none focus:ring-2 focus:ring-primary mt-2"
+              >
+                <option value="light">Light Theme</option>
+                <option value="dark">Dark Theme</option>
+              </select>
+              <div className="flex space-x-2 mb-2">
+                <button
+                  onClick={() => applyFormatting(editingNote.id, "bold")}
+                  className="p-1 rounded hover:bg-muted/80"
+                  aria-label="Bold"
+                >
+                  <b>B</b>
+                </button>
+                <button
+                  onClick={() => applyFormatting(editingNote.id, "italic")}
+                  className="p-1 rounded hover:bg-muted/80"
+                  aria-label="Italic"
+                >
+                  <i>I</i>
+                </button>
+                <button
+                  onClick={() => applyFormatting(editingNote.id, "underline")}
+                  className="p-1 rounded hover:bg-muted/80"
+                  aria-label="Underline"
+                >
+                  <u>U</u>
+                </button>
+                <button
+                  onClick={() => applyFormatting(editingNote.id, "bullet")}
+                  className="p-1 rounded hover:bg-muted/80"
+                  aria-label="Bullet List"
+                >
+                  •
+                </button>
+              </div>
               <textarea
                 value={editingNote.content}
                 onChange={(e) =>
