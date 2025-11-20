@@ -1,0 +1,104 @@
+
+# 2025-11-20 14:29:47.896583
++Code the following app
++```
++Create a fully functional Notes Taker App with a clean, minimal interface.
++
++Core Requirements:
++
++Users can create, edit, and delete notes.
++
++Support for plain text and rich text formatting (bold, italic, underline, bullets).
++
++Notes should be autosaved in real time.
++
++Add a search bar to instantly find notes by title or content.
++
++Ability to pin notes to keep them at the top.
++
++Option to categorize notes with tags or folders.
++
++Include a light/dark theme toggle.
++
++Extra Features:
++
++Add a quick “Add Note” button floating on the screen.
++
++Allow users to archive notes instead of deleting permanently.
++
++Provide an optional password/lock for specific notes.
++
++Make the layout responsive for mobile and desktop.
++
++UI Requirements:
++
++Clean, modern layout similar to Google Keep or iOS Notes.
++
++List view with titles, timestamps, and preview text.
++
++Simple editor screen with a distraction-free writing space.
++
++Technical Requirements:
++
++Use any stack supported by the AI (React preferred).
++
++Store notes locally (localStorage or built-in DB).
++
++Smooth transitions between note list & editing view.
++
++Goal: Build a fast, intuitive, user-friendly notes app that makes writing and organizing thoughts effortless.
++```
++
++Generate an app logo and update the app metadata title and description.
+
+# 2025-11-20 14:29:47.899131
++Code the following app
++```
++Create a fully functional Notes Taker App with a clean, minimal interface.
++
++Core Requirements:
++
++Users can create, edit, and delete notes.
++
++Support for plain text and rich text formatting (bold, italic, underline, bullets).
++
++Notes should be autosaved in real time.
++
++Add a search bar to instantly find notes by title or content.
++
++Ability to pin notes to keep them at the top.
++
++Option to categorize notes with tags or folders.
++
++Include a light/dark theme toggle.
++
++Extra Features:
++
++Add a quick “Add Note” button floating on the screen.
++
++Allow users to archive notes instead of deleting permanently.
++
++Provide an optional password/lock for specific notes.
++
++Make the layout responsive for mobile and desktop.
++
++UI Requirements:
++
++Clean, modern layout similar to Google Keep or iOS Notes.
++
++List view with titles, timestamps, and preview text.
++
++Simple editor screen with a distraction-free writing space.
++
++Technical Requirements:
++
++Use any stack supported by the AI (React preferred).
++
++Store notes locally (localStorage or built-in DB).
++
++Smooth transitions between note list & editing view.
++
++Goal: Build a fast, intuitive, user-friendly notes app that makes writing and organizing thoughts effortless.
++```
++
++Generate an app logo and update the app metadata title and description.
