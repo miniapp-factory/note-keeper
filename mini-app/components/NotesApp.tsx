@@ -81,15 +81,25 @@ export default function NotesApp() {
           default:
             break;
         }
-        return { ...n, content: newContent, updatedAt: Date.now() };
+        const updated = { ...n, content: newContent, updatedAt: Date.now() };
+        if (editingNote?.id === id) setEditingNote(updated);
+        return updated;
       })
     );
   };
 
   const updateNote = (id: string, updates: Partial<Note>) => {
-    setNotes((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, ...updates, updatedAt: Date.now() } : n))
-    );
+    setNotes((prev) => {
+      const newNotes = prev.map((n) => {
+        if (n.id === id) {
+          const updated = { ...n, ...updates, updatedAt: Date.now() };
+          if (editingNote?.id === id) setEditingNote(updated);
+          return updated;
+        }
+        return n;
+      });
+      return newNotes;
+    });
   };
 
   const deleteNote = (id: string) => {
@@ -200,9 +210,10 @@ export default function NotesApp() {
               <input
                 type="text"
                 value={editingNote.title}
-                onChange={(e) =>
-                  updateNote(editingNote.id, { title: e.target.value })
-                }
+                onChange={(e) => {
+                  updateNote(editingNote.id, { title: e.target.value });
+                  setEditingNote({ ...editingNote, title: e.target.value });
+                }}
                 className="w-full p-2 rounded border border-input focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Title"
               />
@@ -246,9 +257,10 @@ export default function NotesApp() {
               </div>
               <textarea
                 value={editingNote.content}
-                onChange={(e) =>
-                  updateNote(editingNote.id, { content: e.target.value })
-                }
+                onChange={(e) => {
+                  updateNote(editingNote.id, { content: e.target.value });
+                  setEditingNote({ ...editingNote, content: e.target.value });
+                }}
                 className="w-full h-64 p-2 rounded border border-input focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Write your note..."
               />
