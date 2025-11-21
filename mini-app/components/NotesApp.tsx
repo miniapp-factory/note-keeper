@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
 
 interface Note {
@@ -123,20 +124,20 @@ export default function NotesApp() {
     <div className="relative flex flex-col h-full">
       {/* Theme toggle */}
       <div className="absolute top-4 right-4 flex gap-2">
-        <button
+        <Button
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="p-2 rounded bg-muted hover:bg-muted/80"
+          variant="outline"
           aria-label="Toggle theme"
         >
           {theme === "light" ? "🌙" : "☀️"}
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => setAutosaveEnabled(!autosaveEnabled)}
-          className="p-2 rounded bg-muted hover:bg-muted/80"
+          variant="outline"
           aria-label="Toggle autosave"
         >
           {autosaveEnabled ? "🛑" : "▶️"}
-        </button>
+        </Button>
       </div>
 
       {/* Search bar */}
@@ -225,34 +226,34 @@ export default function NotesApp() {
                 <option value="dark">Dark Theme</option>
               </select>
               <div className="flex space-x-2 mb-2">
-                <button
+                <Button
                   onClick={() => applyFormatting(editingNote.id, "bold")}
-                  className="p-1 rounded hover:bg-muted/80"
+                  variant="outline"
                   aria-label="Bold"
                 >
                   <b>B</b>
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => applyFormatting(editingNote.id, "italic")}
-                  className="p-1 rounded hover:bg-muted/80"
+                  variant="outline"
                   aria-label="Italic"
                 >
                   <i>I</i>
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => applyFormatting(editingNote.id, "underline")}
-                  className="p-1 rounded hover:bg-muted/80"
+                  variant="outline"
                   aria-label="Underline"
                 >
                   <u>U</u>
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => applyFormatting(editingNote.id, "bullet")}
-                  className="p-1 rounded hover:bg-muted/80"
+                  variant="outline"
                   aria-label="Bullet List"
                 >
                   •
-                </button>
+                </Button>
               </div>
               <textarea
                 value={editingNote.content}
@@ -263,18 +264,27 @@ export default function NotesApp() {
                 placeholder="Write your note..."
               />
               <div className="flex gap-2">
-                <button
+                <Button
                   onClick={() => deleteNote(editingNote.id)}
-                  className="p-2 rounded bg-destructive text-destructive-foreground hover:bg-destructive/80"
+                  variant="destructive"
+                  aria-label="Delete note"
                 >
                   Delete
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => setEditingNote(null)}
-                  className="p-2 rounded bg-muted text-muted-foreground hover:bg-muted/80"
+                  variant="outline"
+                  aria-label="Close editor"
                 >
                   Close
-                </button>
+                </Button>
+                <Button
+                  onClick={() => localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))}
+                  variant="outline"
+                  aria-label="Save notes"
+                >
+                  Save
+                </Button>
               </div>
             </div>
           ) : (
