@@ -65,25 +65,25 @@ export default function NotesApp() {
       prev.map((n) => {
         if (n.id !== id) return n;
         let newContent = n.content;
-        switch (type) {
-          case "bold":
-            newContent = `<b>${newContent}</b>`;
-            break;
-          case "italic":
-            newContent = `<i>${newContent}</i>`;
-            break;
-          case "underline":
-            newContent = `<u>${newContent}</u>`;
-            break;
-          case "bullet":
-            newContent = `<ul><li>${newContent}</li></ul>`;
-            break;
-          default:
-            break;
+        const tags: Record<string, string> = {
+          bold: "b",
+          italic: "i",
+          underline: "u",
+          bullet: "ul",
+        };
+        const tag = tags[type];
+        if (!tag) return n;
+        const open = `<${tag}>`;
+        const close = `</${tag}>`;
+        if (
+          newContent.startsWith(open) &&
+          newContent.endsWith(close)
+        ) {
+          newContent = newContent.slice(open.length, -close.length);
+        } else {
+          newContent = `${open}${newContent}${close}`;
         }
-        const updated = { ...n, content: newContent, updatedAt: Date.now() };
-        if (editingNote?.id === id) setEditingNote(updated);
-        return updated;
+        return { ...n, content: newContent, updatedAt: Date.now() };
       })
     );
   };
