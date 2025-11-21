@@ -122,3 +122,13 @@
 +Also there is not save button. In the app there is two time mentioned Light Mode & Dark Mode make it once only.
 +Make it more professional.
 +
+
+# 2025-11-21 06:21:19.703220
++Create a Notes Maker Web App with a two-column layout where the left sidebar contains a “Search notes…” bar, a scrollable list of notes showing each note’s title, pin icon, and timestamp, and a “+ New Note” button, while the right panel displays the selected note with a title input field, a theme selector dropdown (Light Theme and Dark Theme), formatting buttons for bold, italic, underline, and bullet lists, a large multiline text area labeled “Write your note…”, and action buttons for Delete (red), Close, and Save; notes should open in the editor when clicked, allow pin toggling, and persist using browser local storage, with the theme selector applying light or dark styling across the entire interface, all designed to match the clean, minimal look.
++
++Don't repeat the same features like Light Mode & Dark Mode
+
+# 2025-11-21 06:21:19.704645
++Create a Notes Maker Web App with a two-column layout where the left sidebar contains a “Search notes…” bar, a scrollable list of notes showing each note’s title, pin icon, and timestamp, and a “+ New Note” button, while the right panel displays the selected note with a title input field, a theme selector dropdown (Light Theme and Dark Theme), formatting buttons for bold, italic, underline, and bullet lists, a large multiline text area labeled “Write your note…”, and action buttons for Delete (red), Close, and Save; notes should open in the editor when clicked, allow pin toggling, and persist using browser local storage, with the theme selector applying light or dark styling across the entire interface, all designed to match the clean, minimal look.
++
++Don't repeat the same features like Light Mode & Dark Mode
