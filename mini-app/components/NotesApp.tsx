@@ -14,7 +14,6 @@ interface Note {
   password?: string;
   createdAt: number;
   updatedAt: number;
-  theme: "light" | "dark";
 }
 
 const STORAGE_KEY = "notes-app-notes";
@@ -54,7 +53,6 @@ export default function NotesApp() {
       pinned: false,
       tags: [],
       archived: false,
-      theme: "light",
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
@@ -124,13 +122,6 @@ export default function NotesApp() {
     <div className="relative flex flex-col h-full">
       {/* Theme toggle */}
       <div className="absolute top-4 right-4 flex gap-2">
-        <Button
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          variant="outline"
-          aria-label="Toggle theme"
-        >
-          {theme === "light" ? "🌙" : "☀️"}
-        </Button>
         <Button
           onClick={() => setAutosaveEnabled(!autosaveEnabled)}
           variant="outline"
@@ -216,10 +207,8 @@ export default function NotesApp() {
                 placeholder="Title"
               />
               <select
-                value={editingNote.theme || "light"}
-                onChange={(e) =>
-                  updateNote(editingNote.id, { theme: e.target.value as "light" | "dark" })
-                }
+                value={theme}
+                onChange={(e) => setTheme(e.target.value as "light" | "dark")}
                 className="w-full p-2 rounded border border-input focus:outline-none focus:ring-2 focus:ring-primary mt-2"
               >
                 <option value="light">Light Theme</option>

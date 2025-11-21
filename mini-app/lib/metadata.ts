@@ -1,3 +1,3 @@
-export const title = "Notes Taker App";
-export const description = "A fast, intuitive, and feature-rich notes application for quick capture and organization.";
+export const title = "Notes Maker Web App";
+export const description = "A clean, minimal two‑column notes editor with search, pin, archive, and rich‑text formatting.";
 export const url = process.env.NEXT_PUBLIC_URL;
