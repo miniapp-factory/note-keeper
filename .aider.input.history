@@ -132,3 +132,9 @@
 +Create a Notes Maker Web App with a two-column layout where the left sidebar contains a “Search notes…” bar, a scrollable list of notes showing each note’s title, pin icon, and timestamp, and a “+ New Note” button, while the right panel displays the selected note with a title input field, a theme selector dropdown (Light Theme and Dark Theme), formatting buttons for bold, italic, underline, and bullet lists, a large multiline text area labeled “Write your note…”, and action buttons for Delete (red), Close, and Save; notes should open in the editor when clicked, allow pin toggling, and persist using browser local storage, with the theme selector applying light or dark styling across the entire interface, all designed to match the clean, minimal look.
 +
 +Don't repeat the same features like Light Mode & Dark Mode
+
+# 2025-11-21 06:52:32.382569
++I’m encountering an issue in my app: when entering the title and content for notes, the input fields only accept one character at a time. Please fix this so that users can type freely and enter the full title and content continuously without the one-letter restriction.
+
+# 2025-11-21 06:52:32.384135
++I’m encountering an issue in my app: when entering the title and content for notes, the input fields only accept one character at a time. Please fix this so that users can type freely and enter the full title and content continuously without the one-letter restriction.
